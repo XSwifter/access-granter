@@ -5,12 +5,16 @@ angular.module('role', [ 'ngRoute', 'ngSanitize', 'ui.bootstrap'])
             templateUrl : 'role/view.html',
             controller : 'roleController',
             activeRoute : 'role'
+        }).when('/role/:id', {
+            templateUrl : 'role/viewDetails.html',
+            controller : 'roleController',
+            activeRoute : 'roleDetails'
         });
 
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 
     })
-    .controller('roleController', function($scope, $route, $http) {
+    .controller('roleController', function($scope, $route, $http, $routeParams, $location) {
 
         $scope.$route = $route;
 
@@ -56,5 +60,90 @@ angular.module('role', [ 'ngRoute', 'ngSanitize', 'ui.bootstrap'])
             });
         };
 
-        getRoles();
+        var getRoleDetails = function(id) {
+            $http.get('/role/get/'+id,
+                {
+                    headers:
+                        {
+                            'Content-Type': 'application/json'
+                        }
+                }).success(function(data) {
+                $scope.roleDetails = data;
+            }).error(function() {
+
+            });
+        };
+
+        var getActivePermissions = function(id) {
+            $http.get('permission/all-active/'+id,
+                {
+                    headers:
+                        {
+                            'Content-Type': 'application/json'
+                        }
+                }).success(function(data) {
+                $scope.activePermissions = data;
+            }).error(function() {
+
+            });
+        };
+
+        var getAvailablePermissions = function(id) {
+            $http.get('permission/all-available/'+id,
+                {
+                    headers:
+                        {
+                            'Content-Type': 'application/json'
+                        }
+                }).success(function(data) {
+                $scope.availablePermissions = data;
+            }).error(function() {
+
+            });
+        };
+
+        var onLoad = function() {
+            if ($route.current.activeRoute == 'role') {
+                getRoles();
+            } else if ($route.current.activeRoute == 'roleDetails'){
+                getRoleDetails($routeParams.id);
+                getActivePermissions($routeParams.id);
+                getAvailablePermissions($routeParams.id);
+            }
+        };
+
+        onLoad();
+
+        $scope.viewRoleDetails = function(id) {
+            $location.path('role/'+id);
+        };
+
+        $scope.assignPermission = function(permId) {
+            var params =  permId;
+            $http.post('/role/add-permission/'+$routeParams.id, params,
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).success(function (data) {
+                onLoad();
+                $scope.addAlert('success', 'Permission successfully assigned!');
+            }).error(function () {
+
+            });
+        };
+
+        $scope.unassignPermission = function(permId) {
+            $http.post('/role/remove-permission/'+$routeParams.id, permId,
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).success(function (data) {
+                onLoad();
+                $scope.addAlert('success', 'Permission successfully removed!');
+            }).error(function () {
+
+            });
+        };
     });

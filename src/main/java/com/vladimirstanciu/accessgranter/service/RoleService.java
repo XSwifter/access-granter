@@ -1,6 +1,7 @@
 package com.vladimirstanciu.accessgranter.service;
 
 import com.vladimirstanciu.accessgranter.domain.Role;
+import com.vladimirstanciu.accessgranter.domain.RolePermission;
 
 import java.util.List;
 
@@ -13,7 +14,13 @@ public interface RoleService {
 
     List<Role> getRoles();
 
+    Role findById(Long id);
+
     List<Role> getActiveRoles(Long id);
 
     List<Role> getAvailableRoles(Long id);
+
+    RolePermission addPermission(Long roleId, Long permId);
+
+    void removePermission(Long roleId, Long permId);
 }

@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <div class="container-fluid col-md-4">
+        <h2>User information</h2>
+        <table class="table table-striped">
+            <tr>
+                <td class="col-md-6">Role Name </td>
+                <td class="col-md-6">{{roleDetails.name}} </td>
+            </tr>
+        </table>
+        <div uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2000">{{alert.msg}}</div>
+    </div>
+
+    <div class="container-fluid col-md-8">
+        <div class="container-fluid col-md-6">
+            <h2>Active Permissions</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th class="col-md-3">Permission Name</th>
+                    <th class="col-md-3"></th>
+                </tr>
+                </thead>
+                <tr ng-repeat="aPerm in activePermissions">
+                    <td class="col-md-3">
+                        {{aPerm.name}}
+                    </td>
+                    <td class="col-md-1" align="right">
+                        <span ng-click="unassignRole(aPerm.id);" class="glyphicon glyphicon-arrow-right"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="container-fluid col-md-6">
+            <h2>Available Permissions</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th class="col-md-3"></th>
+                    <th class="col-md-3">Permission Name</th>
+                </tr>
+                </thead>
+                <tr ng-repeat="perm in availablePermissions">
+                    <td class="col-md-1">
+                        <span ng-click="assignRole(perm.id);" class="glyphicon glyphicon-arrow-left"></span>
+                    </td>
+                    <td class="col-md-3">
+                        {{perm.name}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -23,4 +23,12 @@ public class PermissionServiceImpl implements PermissionService {
     public List<Permission> getPermissions() {
         return permissionRepository.findAll();
     }
+
+    public List<Permission> getActivePermissions(Long id){
+        return permissionRepository.findActivePermissions(id);
+    }
+
+    public List<Permission> getAvailablePermissions(Long id){
+        return permissionRepository.findAvailablePermissions(id);
+    }
 }

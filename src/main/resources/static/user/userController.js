@@ -132,7 +132,6 @@ angular.module('user', [ 'ngRoute', 'ngSanitize', 'ui.bootstrap' ])
         };
 
         $scope.unassignRole = function(roleId) {
-            var params = roleId;
             $http.post('/user/remove-role/'+$routeParams.id, roleId,
                 {
                     headers: {

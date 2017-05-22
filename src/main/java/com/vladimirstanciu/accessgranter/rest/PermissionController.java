@@ -1,15 +1,10 @@
 package com.vladimirstanciu.accessgranter.rest;
 
 import com.vladimirstanciu.accessgranter.domain.Permission;
-import com.vladimirstanciu.accessgranter.domain.Role;
 import com.vladimirstanciu.accessgranter.service.PermissionService;
-import com.vladimirstanciu.accessgranter.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +28,17 @@ public class PermissionController {
     @ResponseBody
     public List<Permission> getPermissions(){
         return permissionService.getPermissions();
+    }
+
+    @RequestMapping(value = "/all-active/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Permission> getActivePermissionsForRole(@PathVariable("id") Long id){
+        return permissionService.getActivePermissions(id);
+    }
+
+    @RequestMapping(value = "/all-available/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Permission> getAvailablePermissionsForRole(@PathVariable("id") Long id){
+        return permissionService.getAvailablePermissions(id);
     }
 }

@@ -12,4 +12,8 @@ public interface PermissionService {
     Permission addPermission(Permission permission);
 
     List<Permission> getPermissions();
+
+    List<Permission> getActivePermissions(Long id);
+
+    List<Permission> getAvailablePermissions(Long id);
 }

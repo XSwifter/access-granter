@@ -34,7 +34,7 @@ public class UserController {
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public User getUsers(@PathVariable("id") Long id){
+    public User getUserDetails(@PathVariable("id") Long id){
         return userService.findById(id);
     }
 
