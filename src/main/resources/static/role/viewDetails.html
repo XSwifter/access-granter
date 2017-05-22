@@ -25,7 +25,7 @@
                         {{aPerm.name}}
                     </td>
                     <td class="col-md-1" align="right">
-                        <span ng-click="unassignRole(aPerm.id);" class="glyphicon glyphicon-arrow-right"></span>
+                        <span ng-click="unassignPermission(aPerm.id);" class="glyphicon glyphicon-arrow-right"></span>
                     </td>
                 </tr>
             </table>
@@ -41,7 +41,7 @@
                 </thead>
                 <tr ng-repeat="perm in availablePermissions">
                     <td class="col-md-1">
-                        <span ng-click="assignRole(perm.id);" class="glyphicon glyphicon-arrow-left"></span>
+                        <span ng-click="assignPermission(perm.id);" class="glyphicon glyphicon-arrow-left"></span>
                     </td>
                     <td class="col-md-3">
                         {{perm.name}}

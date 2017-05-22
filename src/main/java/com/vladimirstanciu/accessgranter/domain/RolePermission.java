@@ -1,5 +1,7 @@
 package com.vladimirstanciu.accessgranter.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 /**
@@ -14,12 +16,14 @@ public class RolePermission {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "permission_id")
+    @JsonBackReference(value="perm")
     private Permission permission;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "role_id")
+    @JsonBackReference(value="role")
     private Role role;
 
     public Long getId() {

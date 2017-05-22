@@ -1,5 +1,7 @@
 package com.vladimirstanciu.accessgranter.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -19,6 +21,7 @@ public class Permission {
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "permission")
+    @JsonManagedReference(value="perm")
     private Set<RolePermission> permissionRoles;
 
     public Long getId() {
