@@ -41,4 +41,10 @@ public class PermissionController {
     public List<Permission> getAvailablePermissionsForRole(@PathVariable("id") Long id){
         return permissionService.getAvailablePermissions(id);
     }
+
+    @RequestMapping(value = "/all-active-user/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Permission> getActivePermissionsForUser(@PathVariable("id") Long id){
+        return permissionService.getActivePermissionsForUser(id);
+    }
 }

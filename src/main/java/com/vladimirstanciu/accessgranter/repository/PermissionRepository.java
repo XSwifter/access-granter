@@ -17,6 +17,7 @@ public interface PermissionRepository extends JpaRepository<Permission, Long> {
     @Query("SELECT p FROM RolePermission rp INNER JOIN rp.permission p INNER JOIN rp.role r WHERE r.id = :id")
     List<Permission> findActivePermissions(@Param("id") Long id);
 
-    @Query("SELECT p FROM RolePermission rp INNER JOIN rp.role r RIGHT JOIN rp.permission p WHERE r.id <> :id OR r.id IS NULL")
+    @Query("SELECT p FROM Permission p WHERE p.id NOT IN (SELECT rp.permission.id FROM RolePermission rp INNER JOIN rp.role r WHERE r.id = :id)")
     List<Permission> findAvailablePermissions(@Param("id") Long id);
+
 }

@@ -52,7 +52,6 @@ public class RoleController {
         roleService.removePermission(roleId, permId);
     }
 
-
     @RequestMapping(value = "/all-active/{id}", method = RequestMethod.GET)
     @ResponseBody
     public List<Role> getActiveRolesForUser(@PathVariable("id") Long id) {

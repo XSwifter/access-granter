@@ -17,6 +17,6 @@ public interface RoleRepository extends JpaRepository<Role, Long> {
     @Query("SELECT r FROM UserRole ur INNER JOIN ur.role r INNER JOIN ur.user u WHERE u.id = :id")
     List<Role> findActiveRoles(@Param("id") Long id);
 
-    @Query("SELECT r FROM UserRole ur INNER JOIN ur.user u RIGHT JOIN ur.role r WHERE u.id <> :id OR u.id IS NULL")
+    @Query("SELECT r FROM Role r WHERE r.id NOT IN (SELECT ur.role.id FROM UserRole ur INNER JOIN ur.user u WHERE u.id = :id)")
     List<Role> findAvailableRoles(@Param("id") Long id);
 }

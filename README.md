@@ -10,3 +10,4 @@ Functionalities implemented :
   - Assign Permissions to a Role
   - Unassign a Role from an User
   - Unassign a Permission from a Role
+  - View active permissions for an user

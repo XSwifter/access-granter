@@ -100,6 +100,20 @@ angular.module('user', [ 'ngRoute', 'ngSanitize', 'ui.bootstrap' ])
             });
         };
 
+        var getActivePermissions = function(id) {
+            $http.get('permission/all-active-user/'+id,
+                {
+                    headers:
+                        {
+                            'Content-Type': 'application/json'
+                        }
+                }).success(function(data) {
+                $scope.activePermissions = data;
+            }).error(function() {
+
+            });
+        };
+
         var onLoad = function() {
             if ($route.current.activeRoute == 'user') {
                 getUsers();
@@ -107,6 +121,7 @@ angular.module('user', [ 'ngRoute', 'ngSanitize', 'ui.bootstrap' ])
                 getUserDetails($routeParams.id);
                 getActiveRoles($routeParams.id);
                 getAvailableRoles($routeParams.id);
+                getActivePermissions($routeParams.id);
             }
         };
 

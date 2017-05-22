@@ -15,6 +15,23 @@
                 <td class="col-md-6">{{userDetails.email}} </td>
             </tr>
         </table>
+        <h2>Active Permissions</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th class="col-md-6">Permission Name</th>
+                <th class="col-md-6"></th>
+            </tr>
+            </thead>
+            <tr ng-repeat="aPerm in activePermissions">
+                <td class="col-md-6">
+                    {{aPerm.name}}
+                </td>
+                <td class="col-md-6" align="right">
+
+                </td>
+            </tr>
+        </table>
         <div uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2000">{{alert.msg}}</div>
     </div>
 
