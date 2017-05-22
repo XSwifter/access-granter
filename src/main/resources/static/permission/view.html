@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="container-fluid col-md-4">
+        <form ng-submit="savePermission()" name="permissionForm">
+            <div class="form-group">
+                <label for="permissionName">Permission Name</label>
+                <input type="text" class="form-control" id="permissionName" placeholder="Enter the permission" ng-model="permission.name">
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        <div uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2000">{{alert.msg}}</div>
+    </div>
+
+    <div class="container-fluid col-md-8">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th class="col-md-4">Permission</th>
+                <th class="col-md-4"></th>
+            </tr>
+            </thead>
+            <tr ng-repeat="permission in permissions">
+                <td class="col-md-4">
+                    {{permission.name}}
+                </td>
+                <td class="col-md-4">
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

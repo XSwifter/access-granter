@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <title>Access Granter</title>
+    <link href="css/angular-bootstrap.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], .ng-cloak {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body ng-app="access_granter" ng-cloak class="ng-cloak">
+    <div ng-controller="homeController" class="container-fluid" style="margin-bottom:5px;">
+        <ul class="nav nav-pills navbar-default navbar-static-top" role="tablist">
+            <li class="btn btn-navbar" ng-class="{active: $route.current.activeRoute == 'home'}" ng-click="changeView('/')"><a href="#/">Home</a></li>
+            <li class="btn btn-navbar" ng-class="{active: $route.current.activeRoute == 'user'}" ng-click="changeView('/user')"><a href="#/user">User</a></li>
+            <li class="btn btn-navbar" ng-class="{active: $route.current.activeRoute == 'role'}" ng-click="changeView('/role')"><a href="#/role">Role</a></li>
+            <li class="btn btn-navbar" ng-class="{active: $route.current.activeRoute == 'permission'}" ng-click="changeView('/permission')"><a href="#/permission">Permission</a></li>
+        </ul>
+    </div>
+    <div ng-view class="container-fluid card"></div>
+<script src="js/angular-bootstrap.js" type="text/javascript"></script>
+<script src="index.js"></script>
+<script src="user/userController.js"></script>
+<script src="role/roleController.js"></script>
+<script src="permission/permissionController.js"></script>
+</body>
+</html>
