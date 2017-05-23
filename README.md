@@ -5,6 +5,7 @@ Build & Deploy
   - clone this repository
   - mvn install
   - java -jar target/access-granter-0.0.1-SNAPSHOT
+  - access the application at localhost:8080
   
 About 
 
